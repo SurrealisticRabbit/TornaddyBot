@@ -7,8 +7,8 @@ from nwsapy import nwsapy
 events = ['Tornado Watch','Tornado Warning',]
 comparisonBuffer = ['initial']
 class TornadoBot(discord.Client):
-    def formatMessage(self, input, event):
-        data = '# Active Alert!\n## %s\n%s\n<@&1250538083691008084>' % (event, input)
+    def formatMessage(self, input, event, severity, content, location):
+        data = '# Active Alert in %s\n## %s (%s)\n%s\n%s\n<@&1250538083691008084>' % (location, event, severity, input, content)
         return data
 
     async def on_ready(self):
@@ -27,7 +27,7 @@ class TornadoBot(discord.Client):
                         pass
                     else:
                         comparisonBuffer.append(alert.headline)
-                        await channel.send(self.formatMessage(alert.headline, weatherEvent))
+                        await channel.send(self.formatMessage(alert.headline, weatherEvent, alert.severity, alert.description, alert.areaDesc))
     
     async def on_message(self, message):
         print(message.content)
