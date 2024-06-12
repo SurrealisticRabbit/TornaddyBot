@@ -4,17 +4,11 @@ from discord.ext import tasks
 from dotenv import load_dotenv
 from nwsapy import nwsapy
 
-events = [
-    'Tornado Watch',
-    'Tornado Warning',
-]
-
+events = ['Tornado Watch','Tornado Warning',]
 comparisonBuffer = ['initial']
 class TornadoBot(discord.Client):
     def formatMessage(self, input, event):
-        data = '''# Alert! @here
-        ## %s\n%s\n
-        ''' % (event, input)
+        data = '# Active Alert! @here\n## %s\n%s\n' % (event, input)
         return data
 
     async def on_ready(self):
