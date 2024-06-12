@@ -8,7 +8,7 @@ events = ['Tornado Watch','Tornado Warning',]
 comparisonBuffer = ['initial']
 class TornadoBot(discord.Client):
     def formatMessage(self, input, event):
-        data = '# Active Alert! @here\n## %s\n%s\n' % (event, input)
+        data = '# Active Alert!\n## %s\n%s\n<@&1250538083691008084>' % (event, input)
         return data
 
     async def on_ready(self):
@@ -30,7 +30,7 @@ class TornadoBot(discord.Client):
                         await channel.send(self.formatMessage(alert.headline, weatherEvent))
     
     async def on_message(self, message):
-        pass
+        print(message.content)
 
 if __name__ == '__main__':
     load_dotenv()
