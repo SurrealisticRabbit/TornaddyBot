@@ -8,7 +8,7 @@ class Database():
             pass
         else: # if file does not exist create blank file
             with open(self.filepath, 'w+') as f:
-                print(self.filepath, 'is missing, adding new entry')
+                print('[!] ',self.filepath, 'is missing, adding new entry')
                 f.write(json.dumps({}))
     
     def get_database(self):
@@ -18,7 +18,7 @@ class Database():
                 return db
         except (FileNotFoundError, json.JSONDecodeError):
             with open(self.filepath, 'w+') as f:
-                print(self.filepath, ' lost during operation, recreating')
+                print('[!] ',self.filepath, ' lost during operation, recreating')
                 f.write(json.dumps({}))
             return {}
     
