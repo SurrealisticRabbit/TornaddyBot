@@ -1,20 +1,21 @@
 import os
-import json
 import discord
-from discord.ext import tasks, commands
+from discord.ext import tasks
 from dotenv import load_dotenv
+from tornado import AlertObject, getActiveAlerts
 
 class TornadoBot(discord.Client):
-    def __init__(self):
-        super().__init__(intents=discord.Intents.default() | discord.Intents.message_content)
 
     async def on_ready(self):
-        print(f'Successfully logged in as {self.user}')
+        print(f'Connected to Discord network as {self.user}')
         self.weather_task.start()
     
     @tasks.loop(seconds=30)
-    async def weather_task(self, channel, alert, weatherEvent)
-        await channel.send(self.formatMessage(alert.headline, weatherEvent, alert.severity, alert.description, alert.areaDesc))
+    async def weather_task(self):
+        print('Running update task')
+        for rawAlert in getActiveAlerts():
+            alert = AlertObject(rawAlert)
+            print('Broadcasting Alert: %s' % alert.title)
     
     async def on_message(self, message):
         print(message.content)
@@ -24,5 +25,5 @@ if __name__ == '__main__':
     TOKEN = os.getenv('DISCORD_TOKEN')
     intent = discord.Intents.default()
     intent.message_content = True
-    client = TornadoBot(intents=intent)
+    client = TornadoBot(intents = intent)
     client.run(TOKEN)

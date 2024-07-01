@@ -17,7 +17,9 @@ class Database():
                 db = json.load(f)
                 return db
         except (FileNotFoundError, json.JSONDecodeError):
-            print('Database failed to load')
+            with open(self.filepath, 'w+') as f:
+                print(self.filepath, ' lost during operation, recreating')
+                f.write(json.dumps({}))
             return {}
     
     def save_database(self, db): # Delete database and save it again
