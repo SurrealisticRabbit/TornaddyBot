@@ -17,6 +17,7 @@ eggs/
 Scripts/
 lib/
 lib64/
+data/*
 parts/
 sdist/
 var/
