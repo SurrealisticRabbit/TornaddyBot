@@ -1,6 +1,9 @@
 # TornaddyBot
-## Discord bot which live updates a channel with NOAA live tornado watch / warning alerts
+Discord bot which live updates a channel with NOAA live tornado watch / warning alerts
 
-![alt text](https://github.com/SurrealisticRabbit/Tornado/blob/main/readme_images/image.jpg?raw=true)
+## Tornado warning
+![Tornado Warning](https://raw.githubusercontent.com/SurrealisticRabbit/Tornado/main/readme_images/warning.png)
 
-readme_images/update.png
+## Tornado update
+![Tornado Update](https://raw.githubusercontent.com/SurrealisticRabbit/Tornado/main/readme_images/update.png)
+
