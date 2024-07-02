@@ -72,7 +72,7 @@ async def on_ready():
 def format_alert(a: AlertObject):
     output = f'''
 # {a.title}
-* {a.instruction} *
+*{a.instruction}*
 {a.description}
 '''
     return output
