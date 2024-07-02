@@ -1,10 +1,11 @@
 import os
-from dotenv import load_dotenv
-from data import Database
-from tornado import AlertObject, get_current_alerts
 import discord
+from data import Database
 from discord.ext import tasks
+from dotenv import load_dotenv
 from discord import app_commands
+from tornado import AlertObject, get_current_alerts
+
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -12,6 +13,21 @@ tree = app_commands.CommandTree(client)
 server_db = Database('ServerInfo')
 
 # App Commands
+
+@tree.command(
+    name='help',
+    description='Explains how to use TornaddyBot'
+)
+async def help(interaction: discord.Interaction):
+    await interaction.response.send_message('''
+# TornaddyBot
+**TornaddyBot** is a discord bot that provides tornado updates to a discord channel.
+
+In order to use this bot, you must set a channel for the bot to send updates to. 
+you can do this by using the **/set_channel** command in the channel where you would
+like updates to be sent.
+
+''')
 
 @tree.command(
     name='set_channel', 
