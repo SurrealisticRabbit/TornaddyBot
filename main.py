@@ -70,11 +70,7 @@ async def on_ready():
     update_task.start()
 
 def format_alert(a: AlertObject):
-    output = f'''
-# {a.title}
-*{a.instruction}*
-{a.description}
-'''
+    output = f'# {a.title}\n**Instruction: {a.instruction}**\nThis is a {a.severity} event\n||{a.description}||'
     return output
 
 load_dotenv()

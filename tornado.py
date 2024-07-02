@@ -1,5 +1,7 @@
 from nwsapy import nwsapy
 from data import Database
+import datetime
+import json
 
 events = ['Tornado Watch', 'Tornado Warning', 'Child Abduction Emergency']
 BufferDB = Database('AlertBuffer')
@@ -37,6 +39,10 @@ def check_db(headline):
 def add_to_db(headline, weather_event):
     BufferDB.save_to_database(headline, weather_event, 0)
 
+def json_date_encoder(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.isoformat()
+    return str(obj)
 
 def get_current_alerts():
     active_buffer = []
@@ -46,6 +52,9 @@ def get_current_alerts():
         if len(active_alerts) > 0:
             for alert in active_alerts:
                 if check_db(alert.headline):
+                    with open('dump.json', 'w+') as f:
+                        d = alert.to_dict()
+                        f.write(json.dumps(d, default=json_date_encoder))
                     pass
                 else:
                     print(f'[!] New active alert: {alert.headline}')
