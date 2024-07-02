@@ -1,9 +1,8 @@
 from nwsapy import nwsapy
 from data import Database
 
-events = ['Tornado Watch', 'Tornado Warning']
+events = ['Tornado Watch', 'Tornado Warning', 'Child Abduction Emergency']
 BufferDB = Database('AlertBuffer')
-
 
 class AlertObject:
     def __init__(self, input_alert):
@@ -16,6 +15,7 @@ class AlertObject:
         self.instruction = input_alert.instruction
         self.messageType = input_alert.message_type
         self.sender = input_alert.sender_name
+        self.event = input_alert.event
 
     def console_print(self):
         print('\n' + self.title)
