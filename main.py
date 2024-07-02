@@ -55,7 +55,7 @@ async def on_ready():
 
 def format_alert(a: AlertObject):
     output = f'''
-__** {a.title} **__
+# {a.title}
 * {a.instruction} *
 {a.description}
 '''
